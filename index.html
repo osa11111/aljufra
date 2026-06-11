@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الخطة الاستراتيجية لتطوير قطاع التعليم - بلدية الجفرة</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* نظام ألوان 2035 الفاخر - الوضع المضيء الافتراضي المتطور */
+            --bg-gradient: radial-gradient(circle at 50% 50%, #f4f7fc 0%, #eef2f9 100%);
+            --text-color: #0f172a;
+            --text-muted: #475569;
+            --accent-color: #b17a50; /* الحفاظ على الهوية الأصلية */
+            --accent-dark: #8c5d37;
+            --primary-royal: #1e3a8a;
+            --purple-futuristic: #6d28d9;
+            --gold-premium: #d4af37;
+            --turquoise-neon: #0d9488;
+            --card-bg: rgba(255, 255, 255, 0.65);
+            --border-color: rgba(30, 58, 138, 0.08);
+            --card-glow: rgba(177, 122, 80, 0.1);
+            --shadow: 0 20px 40px rgba(15, 23, 42, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+            --font-multiplier: 1;
+            --blur-strength: 20px;
+        }
+
+        [data-theme="dark"] {
+            /* نظام ألوان 2035 الفاخر - الوضع الداكن الملكي الاستراتيجي */
+            --bg-gradient: radial-gradient(circle at 50% 50%, #060814 0%, #02040a 100%);
+            --text-color: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent-color: #e2a06f;
+            --accent-dark: #b17a50;
+            --primary-royal: #3b82f6;
+            --purple-futuristic: #a78bfa;
+            --gold-premium: #fbbf24;
+            --turquoise-neon: #2dd4bf;
+            --card-bg: rgba(10, 15, 30, 0.7);
+            --border-color: rgba(255, 255, 255, 0.08);
+            --card-glow: rgba(59, 130, 246, 0.15);
+            --shadow: 0 30px 60px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            transition: background 0.5s ease, color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease;
+        }
+
+        body {
+            font-family: 'Cairo', 'Tajawal', sans-serif;
+            background: var(--bg-gradient);
+            color: var(--text-color);
+            line-height: 1.8;
+            padding: 120px 20px 60px 20px;
+            font-size: calc(11pt * var(--font-multiplier));
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* شاشة التحميل الذكية الفاخرة */
+        #loading-screen {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: #040612;
+            z-index: 99999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .loader-logo {
+            font-size: 2.5rem;
+            font-weight: 900;
+            background: linear-gradient(45deg, #b17a50, #fbbf24, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+            animation: pulseGlow 2s infinite alternate;
+        }
+        .loader-bar {
+            width: 200px; height: 3px; background: rgba(255,255,255,0.1);
+            border-radius: 10px; overflow: hidden; position: relative;
+        }
+        .loader-progress {
+            position: absolute; top:0; left:0; height: 100%; width: 0;
+            background: linear-gradient(90deg, #b17a50, #3b82f6);
+            animation: loadAnim 1.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        }
+
+        @keyframes loadAnim { to { width: 100%; } }
+        @keyframes pulseGlow { from { filter: drop-shadow(0 0 5px rgba(177,122,80,0.3)); } to { filter: drop-shadow(0 0 20px rgba(59,130,246,0.6)); } }
+
+        /* تتبع مؤشر الماوس المضيء المتطور */
+        .cursor-glow {
+            position: fixed;
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, var(--card-glow) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            z-index: 0;
+            mix-blend-mode: screen;
+            opacity: 0.6;
+            display: block;
+        }
+
+        /* خلفية الأورورا وشبكة الطاقة الحية المستدامة */
+        .futuristic-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        .digital-grid {
+            position: absolute; width: 200%; height: 200%;
+            top: -50%; left: -50%;
+            background-image: linear-gradient(var(--border-color) 1px, transparent 1px), linear-gradient(90deg, var(--border-color) 1px, transparent 1px);
+            background-size: 50px 50px;
+            transform: perspective(500px) rotateX(60deg);
+            opacity: 0.4;
+            animation: gridScroll 40s linear infinite;
+        }
+        .aurora-orb {
+            position: absolute; border-radius: 50%; filter: blur(100px); opacity: 0.15; mix-blend-mode: screen; animation: floatOrb 20s infinite alternate;
+        }
+        .aurora-1 { width: 500px; height: 500px; background: var(--primary-royal); top: -10%; left: 10%; }
+        .aurora-2 { width: 600px; height: 600px; background: var(--purple-futuristic); bottom: -10%; right: 10%; animation-delay: -5s; }
+        .aurora-3 { width: 400px; height: 400px; background: var(--accent-color); top: 40%; left: 50%; animation-delay: -10s; }
+
+        @keyframes gridScroll { from { background-position: 0 0; } to { background-position: 0 2000px; } }
+        @keyframes floatOrb {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(80px, 50px) scale(1.2); }
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* شريط التصفح الذكي العلوي - Sticky Navbar Glassmorphism */
+        .navbar-glass {
+            position: fixed;
+            top: 0; left: 0; width: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 9999;
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+        }
+        .nav-logo {
+            font-weight: 900;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+            background: linear-gradient(90deg, var(--text-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .nav-logo::before {
+            content: ''; display: inline-block; width: 12px; height: 12px; background: var(--accent-color); border-radius: 3px; box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        /* شريط الأدوات الذكي المطور */
+        .toolbar {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .btn-tool {
+            background: var(--card-bg);
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+            padding: 10px 18px;
+            border-radius: 14px;
+            cursor: pointer;
+            font-weight: 600;
+            font-family: 'Cairo', sans-serif;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(10px);
+            font-size: 0.85rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-tool::after {
+            content: ''; position: absolute; top: -50%; left: -60%; width: 30%; height: 200%; background: rgba(255,255,255,0.2); transform: rotate(30deg); transition: 0s; pointer-events: none;
+        }
+        .btn-tool:hover::after {
+            left: 150%; transition: 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .btn-tool:hover {
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px var(--card-glow);
+        }
+
+        /* هيدر هيرو أسطوري - Hero Section 2035 */
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+            padding: 80px 40px;
+            border-radius: 32px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(5px);
+            position: relative;
+            overflow: hidden;
+            box-shadow: inset 0 0 50px rgba(30, 58, 138, 0.02);
+        }
+
+        header::before {
+            content: ''; position: absolute; top: 0; right: 0; width: 100%; height: 4px; background: linear-gradient(90deg, var(--accent-color), var(--primary-royal), var(--purple-futuristic), var(--accent-color)); background-size: 300% 100%; animation: gradientMove 8s linear infinite;
+        }
+        @keyframes gradientMove { 0% { background-position: 0% 50%; } 100% { background-position: 100% 50%; } }
+
+        .badge {
+            background: linear-gradient(135deg, var(--accent-color), var(--accent-dark));
+            color: #fff !important;
+            padding: 8px 24px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            display: inline-block;
+            margin-bottom: 25px;
+            letter-spacing: 0.5px;
+            box-shadow: 0 10px 25px rgba(177, 122, 80, 0.25);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        h1 {
+            font-size: calc(32pt * var(--font-multiplier));
+            font-weight: 900;
+            color: var(--text-color);
+            margin-bottom: 20px;
+            line-height: 1.3;
+            letter-spacing: -1px;
+            background: linear-gradient(135deg, var(--text-color) 30%, var(--accent-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            font-size: calc(15pt * var(--font-multiplier));
+            color: var(--text-muted);
+            max-width: 750px;
+            margin: 0 auto;
+            font-weight: 500;
+            line-height: 1.6;
+        }
+
+        /* كروت الأقسام المستقبلية الفاخرة - Premium Luxury Glassmorphic Cards */
+        .section-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 45px;
+            margin-bottom: 40px;
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(var(--blur-strength));
+            -webkit-backdrop-filter: blur(var(--blur-strength));
+            position: relative;
+            overflow: hidden;
+            transform: translateY(40px);
+            opacity: 0;
+            animation: cardReveal 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+
+        .section-card::before {
+            content: ''; position: absolute; top:0; left:0; width: 100%; height: 100%;
+            background: radial-gradient(800px circle at var(--mouse-x, 0) var(--mouse-y, 0), rgba(255,255,255,0.06), transparent 40%);
+            z-index: 1; pointer-events: none;
+        }
+
+        @keyframes cardReveal { to { opacity: 1; transform: translateY(0); } }
+
+        /* تتابع ظهور الكروت تلقائياً وبسلاسة */
+        .section-card:nth-child(1) { animation-delay: 0.15s; }
+        .section-card:nth-child(2) { animation-delay: 0.3s; }
+        .section-card:nth-child(3) { animation-delay: 0.45s; }
+        .section-card:nth-child(4) { animation-delay: 0.6s; }
+        .section-card:nth-child(5) { animation-delay: 0.75s; }
+
+        /* العناوين الداخلية المطورة هندسياً */
+        h2 {
+            font-size: calc(18pt * var(--font-multiplier));
+            font-weight: 800;
+            color: var(--text-color);
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding-right: 18px;
+            position: relative;
+        }
+        h2::before {
+            content: ''; position: absolute; right: 0; top: 12.5%; width: 6px; height: 75%; background: linear-gradient(to bottom, var(--accent-color), var(--primary-royal)); border-radius: 10px;
+        }
+
+        h3 {
+            font-size: calc(14pt * var(--font-multiplier));
+            color: var(--accent-dark);
+            margin: 35px 0 15px 0;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        h3::before {
+            content: '//'; color: var(--accent-color); font-weight: 900; font-family: monospace; font-size: 1.1rem;
+        }
+
+        p {
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            text-align: justify;
+            font-weight: 400;
+            font-size: 1.05rem;
+        }
+
+        /* شبكة المحتوى المرنة التي تجمع النص مع الرسوم التوضيحية الفاخرة */
+        .content-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            align-items: center;
+        }
+        @media (min-width: 850px) {
+            .content-layout { grid-template-columns: 3fr 2fr; }
+            .content-layout.reverse { grid-template-columns: 2fr 3fr; }
+        }
+
+        /* لوحات البيانات والرسوم الموجهة الفاخرة SVG Art */
+        .visual-container {
+            width: 100%; display: flex; justify-content: center; align-items: center; position: relative;
+        }
+        .luxury-svg {
+            width: 100%; max-width: 320px; height: auto; filter: drop-shadow(0 15px 30px var(--border-color)); animation: floatGently 6s ease-in-out infinite;
+        }
+        @keyframes floatGently { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+        /* القوائم الأنيقة المستقبلية */
+        ul {
+            list-style: none;
+            margin-right: 5px;
+            margin-bottom: 25px;
+        }
+
+        li {
+            position: relative;
+            padding-right: 32px;
+            margin-bottom: 16px;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        li stroke {
+            color: var(--text-color);
+            font-weight: 700;
+        }
+
+        li::before {
+            content: "";
+            position: absolute;
+            right: 0;
+            top: 10px;
+            width: 8px;
+            height: 8px;
+            background: var(--accent-color);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--accent-color), 0 0 20px var(--accent-color);
+        }
+
+        /* شبكة الأرقام والإحصائيات التفاعلية المتطورة */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .stat-item {
+            background: linear-gradient(145deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+            border: 1px solid var(--border-color);
+            padding: 25px 20px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: inset 0 1px 1px rgba(255,255,255,0.05);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(5px);
+        }
+        .stat-item::before {
+            content: ''; position: absolute; top:0; left:0; width: 100%; height: 100%; background: linear-gradient(180deg, transparent 60%, var(--card-glow)); opacity: 0; transition: opacity 0.3s;
+        }
+        .stat-item:hover::before { opacity: 1; }
+        .stat-item:hover { transform: translateY(-5px); border-color: var(--accent-color); }
+
+        .stat-number {
+            font-size: calc(26pt * var(--font-multiplier));
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--accent-color), var(--primary-royal));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: block;
+            margin-bottom: 8px;
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        .stat-label {
+            font-size: calc(10.5pt * var(--font-multiplier));
+            font-weight: 700;
+            color: var(--text-color);
+            letter-spacing: 0.3px;
+        }
+
+        /* تايم لاين محاور الاستراتيجية المطور 2035 */
+        .axis-container {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            margin-top: 30px;
+            position: relative;
+        }
+        .axis-container::before {
+            content: ''; position: absolute; right: 35px; top: 20px; width: 2px; height: calc(100% - 40px); background: linear-gradient(to bottom, var(--accent-color), var(--primary-royal), var(--purple-futuristic)); opacity: 0.3;
+        }
+
+        .axis-box {
+            border: 1px solid var(--border-color);
+            border-radius: 22px;
+            padding: 35px;
+            background: linear-gradient(135deg, rgba(255,255,255, 0.03), rgba(255,255,255,0.01));
+            backdrop-filter: blur(10px);
+            position: relative;
+            margin-right: 20px;
+        }
+        .axis-box:hover { border-color: var(--primary-royal); box-shadow: 0 15px 35px var(--card-glow); }
+
+        .axis-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            border-bottom: 1px dashed var(--border-color);
+            padding-bottom: 15px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .axis-title {
+            font-size: calc(13.5pt * var(--font-multiplier));
+            font-weight: 800;
+            color: var(--text-color);
+        }
+
+        .axis-badge {
+            background: rgba(30, 58, 138, 0.1);
+            color: var(--primary-royal);
+            border: 1px solid var(--border-color);
+            padding: 6px 16px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+        [data-theme="dark"] .axis-badge { background: rgba(59, 130, 246, 0.15); color: var(--primary-royal); }
+
+        /* الحل العبقري الجذري والمطلق لثبات الخلفية والألوان والشبكة أثناء الطباعة وحفظ PDF */
+        @media print {
+            html, body {
+                background: radial-gradient(circle at 50% 50%, #f4f7fc 0%, #eef2f9 100%) !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                color-adjust: exact !important;
+            }
+            
+            [data-theme="dark"] body {
+                background: radial-gradient(circle at 50% 50%, #060814 0%, #02040a 100%) !important;
+            }
+
+            .futuristic-bg {
+                display: block !important;
+                position: fixed !important;
+                width: 100% !important;
+                height: 100% !important;
+                opacity: 1 !important;
+                z-index: -9999 !important;
+            }
+
+            .digital-grid {
+                display: block !important;
+                opacity: 0.3 !important;
+                background-image: linear-gradient(rgba(30, 58, 138, 0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(30, 58, 138, 0.08) 1px, transparent 1px) !important;
+            }
+
+            .navbar-glass, #loading-screen, .cursor-glow {
+                display: none !important;
+            }
+
+            .section-card {
+                opacity: 1 !important;
+                transform: none !important;
+                page-break-inside: avoid !important;
+                background: rgba(255, 255, 255, 0.75) !important;
+                border: 1px solid rgba(30, 58, 138, 0.1) !important;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.02) !important;
+            }
+
+            [data-theme="dark"] .section-card {
+                background: rgba(10, 15, 30, 0.8) !important;
+                border: 1px solid rgba(255, 255, 255, 0.08) !important;
+            }
+
+            .visual-container, .luxury-svg {
+                display: flex !important;
+                opacity: 1 !important;
+            }
+
+            .axis-box {
+                page-break-inside: avoid !important;
+                background: rgba(255, 255, 255, 0.4) !important;
+            }
+            
+            [data-theme="dark"] .axis-box {
+                background: rgba(10, 15, 30, 0.4) !important;
+            }
+            
+            h1, h2, h3, p, li, span {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="loading-screen">
+        <div class="loader-logo">بلدية الجفرة</div>
+        <div class="loader-bar"><div class="loader-progress"></div></div>
+    </div>
+
+    <div class="cursor-glow" id="cursor-glow"></div>
+
+    <div class="futuristic-bg">
+        <div class="digital-grid"></div>
+        <div class="aurora-orb aurora-1"></div>
+        <div class="aurora-orb aurora-2"></div>
+        <div class="aurora-orb aurora-3"></div>
+    </div>
+
+    <nav class="navbar-glass">
+        <div class="nav-logo">من الهشاشة الي الاستدامة</div>
+        <div class="toolbar">
+            <button class="btn-tool" onclick="toggleTheme()" title="تبديل المظهر">🌓 المظهر</button>
+            <button class="btn-tool" onclick="adjustFont(0.1)" title="تكبير الخط">➕</button>
+            <button class="btn-tool" onclick="adjustFont(-0.1)" title="تصغير الخط">➖</button>
+            <button class="btn-tool" onclick="window.print()" title="طباعة أو تصدير PDF">🖨️ تصدير PDF / طباعة</button>
+        </div>
+    </nav>
+
+    <div class="container">
+        
+        <header>
+            <span class="badge">رؤية استراتيجية شامله</span>
+            <h1>من الهشاشة إلى الاستدامة</h1>
+            <div class="subtitle">رؤية استراتيجية لتكوين منضومة تعليمية  مرنه وشامله</div> 
+        </header>
+
+        <div class="section-card">
+            <div class="content-layout">
+                <div>
+                    <h2>الملخص التنفيذي</h2>
+                    <p>يواجه قطاع التعليم في بلدية الجفرة (والتي تشمل محلاتها الإدارية: هون، ودان، سوكنة، ، والفقهاء) مجموعة من التحديات الهيكلية المتراكمة. تتلخص أبرز هذه الأزمات في النقص الحاد في الكوادر التعليمية المتخصصة في المواد الأساسية، تأخر أو انقطاع صرف مرتبات المعلمين (لا سيما فئة المعلمين المتعاقدين)، بالإضافة إلى تهالك البنية التحتية والوسائل التعليمية المساعدة.</p>
+                    <p>بناءً على ذلك، تقترح هذه الورقة استراتيجية محلية متكاملة للتحول نحو نظام تعليمي مرن ومستدام، يعتمد بشكل أساسي على الاستثمار المكثف في التكنولوجيا التعليمية والحلول الرقمية لضمان جودة التعليم واستمراريته كحق أساسي مكفول لجميع الطلبة بالبلدية.</p>
+                </div>
+                <div class="visual-container">
+                    <svg class="luxury-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="100" cy="100" r="80" stroke="var(--border-color)" stroke-width="4"/>
+                        <circle cx="100" cy="100" r="80" stroke="var(--accent-color)" stroke-width="6" stroke-dasharray="350 150" stroke-linecap="round"/>
+                        <circle cx="100" cy="100" r="60" stroke="var(--primary-royal)" stroke-width="2" stroke-dasharray="200 100"/>
+                        <path d="M70 110 L95 135 L140 80" stroke="var(--turquoise-neon)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-card">
+            <h2>تحليل المشكلة وآثارها (الوضع الراهن 2024 - 2026)</h2>
+            <p>استناداً إلى التقارير والمسوح المحلية المعتمدة للفترة الممتدة ما بين عامي 2024 و2026، يمكن رصد وتلخيص الأبعاد والآثار المباشرة للمشكلة الهيكلية في التعليم على النحو التالي:</p>
+            
+            <div class="content-layout">
+                <div>
+                    <h3>أولاً: العجز الحاد في الكوادر التدريسية</h3>
+                    <p>يعاني القطاع من نقص حاد ومزمن في معلمي التخصصات العلمية والأساسية المحورية، مما يترتب عليه مباشرةً اكتظاظ الفصول الدراسية وتدني مستويات التحصيل العلمي العام للطلاب. وتشمل هذه المواد:</p>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-item"><span class="stat-number">01</span><span class="stat-label">الفيزياء</span></div>
+                        <div class="stat-item"><span class="stat-number">02</span><span class="stat-label">الرياضيات والإحصاء</span></div>
+                        <div class="stat-item"><span class="stat-number">03</span><span class="stat-label">اللغة الإنجليزية</span></div>
+                        <div class="stat-item"><span class="stat-number">04</span><span class="stat-label">علوم الحاسوب</span></div>
+                    </div>
+                </div>
+                <div class="visual-container">
+                    <svg class="luxury-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="30" y="130" width="24" height="40" rx="6" fill="var(--accent-color)"/>
+                        <rect x="70" y="90" width="24" height="80" rx="6" fill="var(--primary-royal)"/>
+                        <rect x="110" y="60" width="24" height="110" rx="6" fill="var(--purple-futuristic)"/>
+                        <rect x="150" y="40" width="24" height="130" rx="6" fill="var(--turquoise-neon)"/>
+                        <path d="M20 150 Q 70 80, 120 50 T 180 20" stroke="var(--gold-premium)" stroke-width="4" fill="none"/>
+                    </svg>
+                </div>
+            </div>
+
+            <div class="content-layout reverse" style="margin-top: 20px;">
+                <div class="visual-container">
+                    <svg class="luxury-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="100" cy="70" r="30" stroke="var(--accent-color)" stroke-width="4"/>
+                        <path d="M50 140 C 50 110, 150 110, 150 140" stroke="var(--primary-royal)" stroke-width="4" stroke-linecap="round"/>
+                        <circle cx="150" cy="130" r="15" fill="var(--card-bg)" stroke="var(--gold-premium)" stroke-width="2"/>
+                        <path d="M145 130 H155 M150 125 V135" stroke="var(--gold-premium)" stroke-width="2"/>
+                    </svg>
+                </div>
+                <div>
+                    <h3>ثانياً: أزمة المعلمين المتعاقدين والجدد</h3>
+                    <ul>
+                        <li><strong>تأخر التسويات المالية:</strong> يؤدي التأخر المستمر في صرف الرواتب والمستحقات المالية للمعلمين إلى إحباط وظيفي شديد وعزوف جماعي عن التدريس، مما ينعكس سلباً على استقرار الجداول الدراسية طوال العام الدراسي.</li>
+                        <li><strong>تسرب المعلمين:</strong> رصد ظاهرة سلبية تتمثل في ترك المعلمين المؤهلين لمهنة التدريس أو طلب الانتقال، مدفوعين بضعف الرواتب، بيئات العمل غير المحفزة، ونقص الدعم الإداري.</li>
+                        <li><strong>البيروقراطية الإدارية:</strong> ضعف آليات التنسيق المباشر بين مراقبة التعليم ببلدية الجفرة ووزارتي التعليم والمالية في طرابلس، مما يتسبب في إطالة الإجراءات الإدارية اللازمة لاعتماد العقود وصرف المستحقات والافراجات المالية المستحقة لسنوات.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="content-layout" style="margin-top: 20px;">
+                <div>
+                    <h3>ثالثاً: تهالك البنية التحتية والتقنية</h3>
+                    <ul>
+                        <li>تعرض بعض المباني والمدارس لأضرار بالغة نتيجة سوء الأحوال الجوية وقدم الصيانة، مما يعوق إمكانية تركيب وسائل تقنية حديثة كالشاشات التفاعلية أو تأسيس مختبرات ذكية متطورة.</li>
+                        <li>عدم توفر البنية الأساسية للاتصالات، مثل خطوط الإنترنت السريع والشبكات الداخلية المؤمنة، فضلاً عن النقص الحاد في قاعات الأنشطة والميزانيات التشغيلية.</li>
+                        <li><strong>التأثير العكسي للاكتظاظ:</strong> الارتفاع البالغ لعدد الطلاب داخل الصف الواحد يمنع المعلمين من تطبيق الاستراتيجيات التعليمية المتنوعة أو استخدام وسائل العرض بمرونة، مما يضطرهم مجدداً للعودة إلى أساليب التلقين التقليدية.</li>
+                    </ul>
+                </div>
+                <div class="visual-container">
+                    <svg class="luxury-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="30" y="50" width="140" height="90" rx="8" stroke="var(--text-color)" stroke-width="4"/>
+                        <rect x="40" y="60" width="120" height="70" rx="4" fill="rgba(255,255,255,0.05)" stroke="var(--border-color)"/>
+                        <path d="M80 140 L60 170 H140 L120 140 Z" fill="var(--text-muted)"/>
+                        <path d="M50 95 L90 70 L150 110" stroke="var(--accent-color)" stroke-width="3" stroke-linecap="round"/>
+                    </svg>
+                </div>
+            </div>
+
+            <h3>رابعاً: العزلة الجغرافية لبعض المناطق</h3>
+            <p>تواجه بعض المناطق البعيدة والنائية داخل نطاق البلدية (خاصة منطقة الفقهاء وزلة) صعوبات بالغة متعلقة بآليات تنقل الطلاب والمعلمين للوصول إلى المؤسسات التعليمية بانتظام.</p>
+        </div>
+
+        <div class="section-card">
+            <h2>استراتيجية التحول: الحلول الاستراتيجية (2022 - 2028)</h2>
+            <p>لتحقيق طفرة نوعية والانتقال بقطاع التعليم بالجفرة إلى نموذج مرن ومستدام، تم صياغة <strong>"الاستراتيجية المحلية للتعليم المرن (الجفرة 2022-2028)"</strong> المرتكزة على أربعة محاور أساسية متكاملة:</p>
+            
+            <div class="axis-container">
+                <div class="axis-box">
+                    <div class="axis-header">
+                        <span class="axis-title">المحور الأول: الاستقرار الوظيفي وتحفيز الكوادر</span>
+                        <span class="axis-badge">المورد البشري</span>
+                    </div>
+                    <p>منح صلاحيات استثنائية لمراقبة التعليم ببلدية الجفرة للتعاقد الفوري والمحلي مع الخريجين من أبناء المنطقة لسد العجز. بالإضافة إلى توفير حوافز مالية وبدل سكن ونقل مجزي للمعلمين بالمناطق النائية (زلة، الفقهاء) لضمان استقرارهم الوظيفي.</p>
+                </div>
+
+                <div class="axis-box">
+                    <div class="axis-header">
+                        <span class="axis-title">المحور الثاني: الاستثمار في تكنولوجيا التعليم والتعلم الهجين</span>
+                        <span class="axis-badge">التحول الرقمي</span>
+                    </div>
+                    <p>تفعيل وإطلاق <strong>"منصة الجفرة التعليمية"</strong> لبث دروس تفاعلية في المواد الأساسية التي تعاني عجزاً حاداً، على أن يقوم بتقديمها صفوة المعلمين بالبلدية. هذا الإجراء يسهم بشكل مباشر في معالجة نقص المعلمين بالمناطق النائية وتقليل الفجوة المعرفية بين الطلاب.</p>
+                </div>
+
+                <div class="axis-box">
+                    <div class="axis-header">
+                        <span class="axis-title">المحور الثالث: تجهيز المعامل الذكية ومصادر التعلم</span>
+                        <span class="axis-badge">البنية التحتية الذكية</span>
+                    </div>
+                    <p>تحويل المكتبات المدرسية التقليدية القائمة إلى مراكز ومختبرات رقمية متطورة لمصادر التعلم الذكي، تتيح للطلاب والتدريس بيئة آمنة للتعامل مع البرمجيات والوسائل التقنية والبحثية المعاصرة.</p>
+                </div>
+
+                <div class="axis-box">
+                    <div class="axis-header">
+                        <span class="axis-title">المحور الرابع: الشراكات والتمويل المستدام</span>
+                        <span class="axis-badge">الاستدامة والتمويل</span>
+                    </div>
+                    <p>عقد توءمة استراتيجية مع مؤسسات المجتمع المدني والشركات النفطية والخدمية العاملة في النطاق الجغرافي للبلدية لدعم صندوق التعليم المحلي، والمساهمة في تمويل المكافآت الطارئة للمعلمين وتغطية نفقات الصيانة الوقائية السريعة للمدارس.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // إيقاف شاشة التحميل
+        window.addEventListener('load', () => {
+            const loader = document.getElementById('loading-screen');
+            loader.style.opacity = '0';
+            setTimeout(() => loader.style.display = 'none', 800);
+        });
+
+        // تأثير تتبع مؤشر الماوس الفاخر
+        const glow = document.getElementById('cursor-glow');
+        document.addEventListener('mousemove', (e) => {
+            glow.style.left = e.clientX + 'px';
+            glow.style.top = e.clientY + 'px';
+        });
+
+        // معالجة حركة كروت الزجاج التفاعلية ثلاثية الأبعاد
+        document.querySelectorAll('.section-card').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+            });
+        });
+
+        // نظام التبديل الفاخر بين الوضع الداكن والمضيء
+        function toggleTheme() {
+            const body = document.body;
+            const currentTheme = body.getAttribute('data-theme');
+            if (currentTheme === 'dark') {
+                body.removeAttribute('data-theme');
+            } else {
+                body.setAttribute('data-theme', 'dark');
+            }
+        }
+
+        // نظام التحكم الديناميكي في حجم الخط والملائمة القرائية
+        let currentMultiplier = 1;
+        function adjustFont(amount) {
+            currentMultiplier += amount;
+            if(currentMultiplier < 0.7) currentMultiplier = 0.7;
+            if(currentMultiplier > 1.5) currentMultiplier = 1.5;
+            document.documentElement.style.setProperty('--font-multiplier', currentMultiplier);
+        }
+    </script>
+</body>
+</html>
