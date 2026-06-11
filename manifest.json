@@ -1,0 +1,60 @@
+{
+  "name": "الخطة الاستراتيجية للتعليم في الجفرة",
+  "short_name": "خطة الجفرة التعليمية",
+  "description": "خطة استراتيجية شاملة لتطوير قطاع التعليم في بلدية الجفرة 2026-2028",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1a3a52",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect fill='%231a3a52' width='192' height='192'/><text x='50%' y='50%' font-size='100' font-weight='bold' fill='%23d4af37' text-anchor='middle' dominant-baseline='middle' font-family='Arial'>الجفرة</text></svg>",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect fill='%231a3a52' width='512' height='512'/><text x='50%' y='50%' font-size='250' font-weight='bold' fill='%23d4af37' text-anchor='middle' dominant-baseline='middle' font-family='Arial'>الجفرة</text></svg>",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": [
+    "education",
+    "government"
+  ],
+  "screenshots": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 540 720'><rect fill='%231a3a52' width='540' height='720'/><text x='50%' y='50%' font-size='100' font-weight='bold' fill='%23d4af37' text-anchor='middle' dominant-baseline='middle' font-family='Arial'>الخطة الاستراتيجية</text></svg>",
+      "sizes": "540x720",
+      "type": "image/svg+xml",
+      "form_factor": "narrow"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "الملخص التنفيذي",
+      "short_name": "الملخص",
+      "description": "اقرأ الملخص التنفيذي للخطة",
+      "url": "/#executive-summary",
+      "icons": []
+    },
+    {
+      "name": "التحديات",
+      "short_name": "التحديات",
+      "description": "اطلع على التحديات الرئيسية",
+      "url": "/#challenges",
+      "icons": []
+    },
+    {
+      "name": "الحلول",
+      "short_name": "الحلول",
+      "description": "اقرأ المحاور الاستراتيجية",
+      "url": "/#solutions",
+      "icons": []
+    }
+  ]
+}
